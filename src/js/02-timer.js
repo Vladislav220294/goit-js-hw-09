@@ -26,11 +26,12 @@ const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minsEl = document.querySelector('[data-minutes]');
 const secsEl = document.querySelector('[data-seconds]');
-
+let timerId = null;
 function updateTimer() {
-  setInterval(() => {
+  timerId = setInterval(() => {
     let ms = new Date(inputEl.value).getTime() - Date.now();
     if (ms <= 0) {
+      clearInterval(timerId);
       return;
     }
     addTimer(convertMs(ms));
